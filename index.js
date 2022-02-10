@@ -1,2 +1,2 @@
 const a = 004;
-const b = 4;
+const b = 6;
