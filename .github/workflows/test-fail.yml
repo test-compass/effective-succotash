@@ -1,0 +1,17 @@
+name: Failing Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  fail-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print error message
+        run: echo "::error::This is a test failure message!"
+
+      - name: Fail the job
+        run: exit 1
