@@ -1,0 +1,17 @@
+name: Warning Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  warning-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print a warning
+        run: echo "::warning::This is a test warning message!"
+
+      - name: Continue with success
+        run: echo "Workflow completed with warnings."
