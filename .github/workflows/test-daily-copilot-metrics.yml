@@ -1,0 +1,33 @@
+name: Daily Copilot Metrics Fetch
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at 00:00 UTC
+  workflow_dispatch: # Allow manual trigger too
+
+jobs:
+  fetch-metrics:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Get today's date
+        id: date
+        run: echo "date=$(date -u +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+    #  - name: Fetch metrics via API
+    #    run: |
+    #      curl -H "Authorization: Bearer ${{ secrets.COPILOT_API_TOKEN }}" \
+    #           -H "Accept: application/json" \
+    #           "https://your-api-endpoint.com/copilot/metrics" \
+    #           -o "metrics-${{ steps.date.outputs.date }}.json"
+
+    #  - name: Commit and push metrics file
+    #    run: |
+    #      git config --global user.name 'github-actions'
+    #      git config --global user.email 'github-actions@github.com'
+    #      git add metrics-${{ steps.date.outputs.date }}.json
+    #      git commit -m "Add metrics for ${{ steps.date.outputs.date }}" || echo "No changes to commit"
+    #      git push
