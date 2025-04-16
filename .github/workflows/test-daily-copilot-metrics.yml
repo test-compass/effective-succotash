@@ -17,17 +17,17 @@ jobs:
         id: date
         run: echo "date=$(date -u +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
-    #  - name: Fetch metrics via API
-    #    run: |
-    #      curl -H "Authorization: Bearer ${{ secrets.COPILOT_API_TOKEN }}" \
-    #           -H "Accept: application/json" \
-    #           "https://your-api-endpoint.com/copilot/metrics" \
-    #           -o "metrics-${{ steps.date.outputs.date }}.json"
+      - name: Fetch metrics via API
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.COPILOT_API_TOKEN }}" \
+               -H "Accept: application/json" \
+               "https://api.github.com/orgs/GH-23340/team/Metrics/copilot/metrics" \
+               -o "metrics-${{ steps.date.outputs.date }}.json"
 
-    #  - name: Commit and push metrics file
-    #    run: |
-    #      git config --global user.name 'github-actions'
-    #      git config --global user.email 'github-actions@github.com'
-    #      git add metrics-${{ steps.date.outputs.date }}.json
-    #      git commit -m "Add metrics for ${{ steps.date.outputs.date }}" || echo "No changes to commit"
-    #      git push
+      - name: Commit and push metrics file
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add metrics-${{ steps.date.outputs.date }}.json
+          git commit -m "Add metrics for ${{ steps.date.outputs.date }}" || echo "No changes to commit"
+          git push
