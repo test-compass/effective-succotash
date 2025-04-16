@@ -21,7 +21,7 @@ jobs:
         run: |
           curl -H "Authorization: Bearer ${{ secrets.COPILOT_API_TOKEN }}" \
                -H "Accept: application/json" \
-               "https://api.github.com/orgs/GH-23340/team/Metrics/copilot/metrics" \
+               "https://api.github.com/orgs/${{ vars.COPILOT_ORG }}/team/${{ vars.COPILOT_TEAM }}/copilot/metrics" \
                -o "metrics-${{ steps.date.outputs.date }}.json"
 
       - name: Commit and push metrics file
