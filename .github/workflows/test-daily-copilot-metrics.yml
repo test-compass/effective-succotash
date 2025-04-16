@@ -15,7 +15,7 @@ jobs:
 
       - name: Get today's date
         id: date
-        run: echo "date=$(date -u +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+        run: echo "date=$(date -u +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_OUTPUT
 
       - name: Fetch metrics via API
         run: |
